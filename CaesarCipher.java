@@ -6,18 +6,20 @@ public class CaesarCipher{
 
         String product = "";
         String EncryptedText = "";
-        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+        String LowerAlphabet = "abcdefghijklmnopqrstuvwxyz";
+        String UpperAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String finalAlphabet = "";
         int key = 0;
 
         //Input of user
         System.out.print("Enter text: ");
         Scanner in = new Scanner(System.in);
-        String input = in.nextLine().toLowerCase();
+        String input = in.nextLine();
         int strInt = input.length();
         
         //Option between Encrypt, Decrypt, or BruteForce
 
-        System.out.print("Would you like to (E)ncrypt or (D)ecrypt?: ");
+        System.out.print("Would you like to (E)ncrypt, (D)ecrypt or (B)ruteforce?: ");
         Scanner cry = new Scanner(System.in);
         String crypt = cry.nextLine().toLowerCase();
 
@@ -44,7 +46,7 @@ public class CaesarCipher{
             }else if (option.equals("r")){
 
                 Random KEY = new Random();
-                key = KEY.nextInt(10000000) + 1;
+                key = KEY.nextInt(1000);
 
                 if (key%26 == 0){
                     System.out.println("Oops, key has been altered due to 26 being the same as your text.");
@@ -63,9 +65,18 @@ public class CaesarCipher{
             //Main Encryption
             for (int i = 0; i < strInt; i++){
 
-                int initalInputInt = alphabet.indexOf(input.charAt(i));
+                char letter = input.charAt(i);
+                boolean check = Character.isUpperCase(letter);
+
+                if (check == true){
+                    finalAlphabet = UpperAlphabet;
+                }else if (check == false){
+                    finalAlphabet = LowerAlphabet;
+                }
+
+                int initalInputInt = finalAlphabet.indexOf(letter);
                 int finalInputInt = (key + initalInputInt) % 26;
-                char finalCharOne = alphabet.charAt(finalInputInt);
+                char finalCharOne = finalAlphabet.charAt(finalInputInt);
                     
                     EncryptedText += finalCharOne;
             
@@ -79,8 +90,18 @@ public class CaesarCipher{
             int Dekey = Dokey.nextInt();
 
             for (int i = 0; i < strInt; i++){
+
+                char letter = input.charAt(i);
+
+                boolean check = Character.isUpperCase(letter);
                 
-                int initalInputInt = alphabet.indexOf(input.charAt(i));
+                if (check == true){
+                    finalAlphabet = UpperAlphabet;
+                }else if (check == false){
+                    finalAlphabet = LowerAlphabet;
+                }
+
+                int initalInputInt = finalAlphabet.indexOf(letter);
 
                 int DecryptKey = initalInputInt - Dekey;
 
@@ -88,16 +109,16 @@ public class CaesarCipher{
                     fix:
                         while (true) {
                             DecryptKey = Math.abs(DecryptKey);
-                            DecryptKey = alphabet.length() - DecryptKey;
+                            DecryptKey = finalAlphabet.length() - DecryptKey;
 
-                            if (DecryptKey <= alphabet.length() && DecryptKey >= 0){
+                            if (DecryptKey <= finalAlphabet.length() && DecryptKey >= 0){
                                 break fix;
                             }
                         }
                 }
 
                 int finalInputInt = (DecryptKey) % 26;
-                char finalCharOne = alphabet.charAt(finalInputInt);
+                char finalCharOne = finalAlphabet.charAt(finalInputInt);
 
                     EncryptedText += finalCharOne;
             }
