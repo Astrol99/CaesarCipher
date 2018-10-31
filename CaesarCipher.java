@@ -1,6 +1,8 @@
 import java.util.Scanner;
 import java.util.Random;
 
+//WORK ON BRUTEFORCE FEATURE
+
 public class CaesarCipher{
     public static void main(String []args){
 
@@ -38,6 +40,7 @@ public class CaesarCipher{
                 key = ke.nextInt();
 
                 if (key%26 == 0){
+                    System.out.println("Oops! Your key has been altered due to {key} % 26 == 0.");
                     key += 1;
                 }    
 
@@ -49,8 +52,7 @@ public class CaesarCipher{
                 key = KEY.nextInt(1000);
 
                 if (key%26 == 0){
-                    System.out.println("Oops, key has been altered due to 26 being the same as your text.");
-
+                    System.out.println("Oops! Your key has been altered due to {key} % 26 == 0.");
                     key += 1;
                 }    
 
