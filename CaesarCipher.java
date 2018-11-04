@@ -6,6 +6,7 @@ import java.util.Random;
 public class CaesarCipher{
     public static void main(String []args){
 
+        boolean alpha;
         String newLine = System.getProperty("line.separator");
         String product = "";
         String EncryptedText = "";
@@ -19,7 +20,7 @@ public class CaesarCipher{
         Scanner in = new Scanner(System.in);
         String input = in.nextLine();
         int strInt = input.length();
-        
+
         //Option between Encrypt, Decrypt, or BruteForce
 
         System.out.print("Would you like to (E)ncrypt, (D)ecrypt or (B)ruteforce?: ");
@@ -69,6 +70,12 @@ public class CaesarCipher{
             for (int i = 0; i < strInt; i++){
 
                 char letter = input.charAt(i);
+
+                if (letter == ' '){
+                    EncryptedText += " ";
+                    continue;
+                }
+
                 boolean check = Character.isUpperCase(letter);
 
                 if (check == true){
@@ -95,6 +102,12 @@ public class CaesarCipher{
             for (int i = 0; i < strInt; i++){
 
                 char letter = input.charAt(i);
+
+                
+                if (letter == ' '){
+                    EncryptedText += " ";
+                    continue;
+                }
 
                 boolean check = Character.isUpperCase(letter);
                 
@@ -135,6 +148,11 @@ public class CaesarCipher{
                 for (int i = 0; i < strInt; i++){
 
                     char letter = input.charAt(i);
+
+                    if (letter == ' '){
+                        EncryptedText += " ";
+                        continue;
+                    }
 
                     boolean check = Character.isUpperCase(letter);
                     
