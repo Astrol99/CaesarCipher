@@ -6,6 +6,7 @@ import java.util.Random;
 public class CaesarCipher{
     public static void main(String []args){
 
+        String newLine = System.getProperty("line.separator");
         String product = "";
         String EncryptedText = "";
         String LowerAlphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -127,6 +128,47 @@ public class CaesarCipher{
 
             product = "Decrypted";
 
+        }else if (crypt.equals("b")){
+            
+            for (int a = 0; a < LowerAlphabet.length(); a++){
+    
+                for (int i = 0; i < strInt; i++){
+
+                    char letter = input.charAt(i);
+
+                    boolean check = Character.isUpperCase(letter);
+                    
+                    if (check == true){
+                        finalAlphabet = UpperAlphabet;
+                    }else if (check == false){
+                        finalAlphabet = LowerAlphabet;
+                    }
+
+                    int initalInputInt = finalAlphabet.indexOf(letter);
+
+                    int DecryptKey = initalInputInt - a;
+
+                    if (DecryptKey < 0){
+                        fix:
+                            while (true) {
+                                DecryptKey = Math.abs(DecryptKey);
+                                DecryptKey = finalAlphabet.length() - DecryptKey;
+
+                                if (DecryptKey <= finalAlphabet.length() && DecryptKey >= 0){
+                                    break fix;
+                                }
+                            }
+                    }
+
+                    int finalInputInt = (DecryptKey) % 26;
+                    char finalCharOne = finalAlphabet.charAt(finalInputInt);
+
+                        EncryptedText += finalCharOne;
+                }
+
+                EncryptedText += "," + newLine + Integer.toString(a) + "-";
+                product = "Decrypted";
+            }
         }else{
             System.out.println("Invalid answer - Please try again later...");
         }
