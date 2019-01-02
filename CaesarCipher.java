@@ -84,6 +84,11 @@ public class CaesarCipher{
                     finalAlphabet = LowerAlphabet;
                 }
 
+                if (finalAlphabet.contains(String.valueOf(letter)) == false){
+                    EncryptedText += letter;
+                    continue;
+                }
+
                 int initalInputInt = finalAlphabet.indexOf(letter);
                 int finalInputInt = (key + initalInputInt) % 26;
                 char finalCharOne = finalAlphabet.charAt(finalInputInt);
@@ -115,6 +120,11 @@ public class CaesarCipher{
                     finalAlphabet = UpperAlphabet;
                 }else if (check == false){
                     finalAlphabet = LowerAlphabet;
+                }
+
+                if (finalAlphabet.contains(String.valueOf(letter)) == false){
+                    EncryptedText += letter;
+                    continue;
                 }
 
                 int initalInputInt = finalAlphabet.indexOf(letter);
@@ -160,6 +170,11 @@ public class CaesarCipher{
                         finalAlphabet = UpperAlphabet;
                     }else if (check == false){
                         finalAlphabet = LowerAlphabet;
+                    }
+
+                    if (finalAlphabet.contains(String.valueOf(letter)) == false){
+                        EncryptedText += letter;
+                        continue;
                     }
 
                     int initalInputInt = finalAlphabet.indexOf(letter);
